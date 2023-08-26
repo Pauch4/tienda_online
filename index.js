@@ -17,6 +17,12 @@ app.get('/products', (req, res) => {
   });
 });
 
+app.get('/Categories', (req, res) => {
+  res.json({
+    name: 'categoria 1',
+    price: 1000
+  });
+});
 app.listen(port, () => {
   console.log('Mi port' +  port);
 });
