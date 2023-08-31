@@ -1,6 +1,5 @@
 const { faker } = require('@faker-js/faker');
 
-
 class ProductsService{
     constructor() {
         this.products=[];
@@ -9,7 +8,7 @@ class ProductsService{
 
 generate(){
 
-    const limit=100;
+    const limit=2;
     for (let index=0;index<limit;index++)   {
         this.products.push({
             id:faker.datatype.uuid(),

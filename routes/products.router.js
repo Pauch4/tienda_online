@@ -8,16 +8,37 @@ router.get('/', (req, res) => {
  const products = service.find();
     res.json(products);
   });
-  
+
   router.get('/filter',(req, res)=>{
     res.send('yo soy un filtro');
   });
-  
+
+
   router.get('/:id', (req, res)=> {
     const { id } = req.params;
+    if(id==='999'){
+        res.status(404).json({
+        message: 'notfound'
+    });
+  }
+  else{
+    res.status(200).json({
+      id,
+      name: 'Producto 2',
+      price: 2000
+    })
+  }
+
+
+
     const product = service.findOne(id);
     res.json(product);
      });
+
+
+
+
+
 
   router.post('/',(req, res)=>{
     const body = req.body;
@@ -46,4 +67,3 @@ router.get('/', (req, res) => {
   });
 
   module.exports=router;
-  
