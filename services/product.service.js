@@ -6,7 +6,7 @@ class ProductsService{
         this.generate();
     }
 
-generate(){
+async generate(){
 
     const limit=2;
     for (let index=0;index<limit;index++)   {
@@ -15,10 +15,11 @@ generate(){
             name:faker.commerce.productName(),
             price:parseInt(faker.commerce.price(),10),
             image:faker.image.imageUrl(),
-    });
-}}
+         });
+     }
+}
 
-create(data){
+async create(data){
   const newProduct = {
     id:faker.datatype.uuid(),
     ...data
@@ -27,15 +28,19 @@ create(data){
   return newProduct;
 }
 
-find(){
-    return this.products;
+find() {
+  return new Promise((resolve, reject) =>{
+  setTimeout(()=>{
+    resolve(this.products);
+  }, 5000);
+})
 }
 
-findOne(id){
+async findOne(id){
     return this.products.find(item=>item.id===id);
 }
 
-update(id, changes)
+async update(id, changes)
 {
   const index= this.products.findIndex(item=>item.id===id);
   if(index===-1){
@@ -49,7 +54,7 @@ update(id, changes)
   return  this.products[index];
 }
 
-delete(id){
+async delete(id){
   const index= this.products.findIndex(item=>item.id===id);
   if(index===-1){
     throw new Error('product not found');
