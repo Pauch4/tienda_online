@@ -6,19 +6,24 @@ const { logErrors,errorHandler, boomerrorHandler }=require('./middlewares/error.
 
 const app = express();
 const port = 3000;
+//const port=process.env.PORT||3000;
+
 
 app.use(express.json());
-const whitelist=['http://localhost:8080', 'https://myapp.com'];
-const options={
-  origin: (origin, callback)=>{
-    if (whitelist.includes(origin)){
+const whitelist = ['http://localhost:8080','https://myapp.co'];
+const options = {
+origin: (origin, callback)=>{
+  if(whitelist.includes(origin)||!origin){
+//if (whitelist.includes(origin)){
       callback(null,true);
     } else {
-      callback(new Error ('no permitido'));
+      callback(new Error ('no permitido noonoooonooooooooo nooo'));
     }
   }
 }
+//app.use(cors());
 app.use(cors(options));
+
 
 
 
